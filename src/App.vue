@@ -1,10 +1,25 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/">Курсы валют </router-link> |
+    <router-link to="/about">Конвектор</router-link>
   </nav>
   <router-view/>
 </template>
+<script>
+import {onMounted} from 'vue'
+import { useStore } from 'vuex';
+
+export default {
+  setup() {
+    const store = useStore();
+
+    onMounted(() => {
+      store.dispatch('fetchCurrencyRates');
+    });
+  },
+}
+</script>
+
 
 <style lang="scss">
 #app {
